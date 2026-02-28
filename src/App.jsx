@@ -18,7 +18,10 @@ export default function App() {
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60)
     const secs = seconds % 60
-    return `${minutes < 10 ? '0' : ''}${minutes}:${secs < 10 ? '0' : ''}${secs}`
+
+    // Minutes WITHOUT leading zero
+    // Seconds WITH leading zero
+    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`
   }
 
   const handleStart = () => {
@@ -37,10 +40,10 @@ export default function App() {
   return (
     <div className="container">
       <h1>Stopwatch</h1>
-      <div className="display">
-        <p>Time</p>
-        <div className="time">{formatTime(time)}</div>
-      </div>
+
+      {/* IMPORTANT CHANGE HERE */}
+      <p>Time: {formatTime(time)}</p>
+
       <div className="buttons">
         {!isRunning ? (
           <button onClick={handleStart}>Start</button>
